@@ -1,0 +1,6 @@
+name: Pasta-SMP
+version: @version@
+main: de.azraanimating.pastasmp.main.PastaSMP
+author: AzraAnimating
+description: System for Pasta-SMP
+api-version: 1.16

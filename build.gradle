@@ -1,0 +1,77 @@
+/*
+ * Copyright (c) 2021. Zyonic Software - Tobias Rempe
+ * This File, its contents and by extention the corresponding project is property of Zyonic Software and may not be used without explicit permission to do so.
+ *
+ * tobiasrempe@zyonicsoftware.com
+ * info@zyonicsoftware.com
+ */
+
+import org.apache.tools.ant.filters.ReplaceTokens
+
+plugins {
+    id 'java'
+    id 'maven-publish'
+}
+
+group 'com.zyonicsoftware'
+version '0.0.1a'
+
+repositories {
+    mavenCentral()
+    jcenter()
+    maven {
+        url = uri('https://hub.spigotmc.org/nexus/content/repositories/snapshots')
+    }
+    maven {
+        url = uri('https://jitpack.io')
+    }
+    maven {
+        name = 'papermc-repo'
+        url = 'https://papermc.io/repo/repository/maven-public/'
+    }
+    maven {
+        name = 'sonatype'
+        url = 'https://oss.sonatype.org/content/groups/public/'
+    }
+}
+
+dependencies {
+    compileOnly 'com.destroystokyo.paper:paper-api:1.16.4-R0.1-SNAPSHOT'
+    implementation 'com.github.WesJD.AnvilGUI:anvilgui:master-SNAPSHOT'
+    implementation 'net.luckperms:api:5.0'
+    implementation(group: 'com.github.Carleslc', name: 'Simple-YAML', version: '1.6.1')
+    implementation 'com.github.AzraAnimating:JSONBuilder:1.1.0'
+    implementation 'com.github.Zyonic-Software:MADS:0.2.0-beta'
+}
+
+jar {
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    exclude('META-INF/*.SF', 'META-INF/*.DSA', 'META-INF/*.RSA')
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+group = 'com.zyonicsoftware'
+version = '0.0.1a'
+description = 'Pasta-SMP'
+sourceCompatibility = '8'
+targetCompatibility = '8'
+
+processResources {
+    from(sourceSets.main.resources.srcDirs) {
+        filter ReplaceTokens, tokens: [version: version]
+    }
+}
+
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from(components.java)
+        }
+    }
+}
