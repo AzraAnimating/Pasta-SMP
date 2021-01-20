@@ -32,6 +32,8 @@ public class Recipes {
     public void load() {
         this.loadBasicLevitationWand();
         this.loadAdvancedLevitationWand();
+        this.loadRoseTNT();
+        this.loadLightningRod();
     }
 
     private void loadBasicLevitationWand() {
@@ -58,7 +60,7 @@ public class Recipes {
         meta.setDisplayName(ChatColor.LIGHT_PURPLE + "Advanced Levitation Wand");;
         advancedLevitationWand.setItemMeta(meta);
 
-        advancedLevitationWand.addUnsafeEnchantment(Enchantment.KNOCKBACK, 1);
+        advancedLevitationWand.addUnsafeEnchantment(Enchantment.ARROW_INFINITE, 1);
         advancedLevitationWand.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 
         NamespacedKey key = new NamespacedKey(this.pastaSMP, "advanced_levitation_wand");
@@ -74,6 +76,45 @@ public class Recipes {
 
         shapedRecipe.setIngredient('W', basicLevitationWand);
         shapedRecipe.setIngredient('B', Material.BLAZE_ROD);
+
+        Bukkit.addRecipe(shapedRecipe);
+    }
+
+    private void loadRoseTNT() {
+        ItemStack roseTnt = new ItemStack(Material.POPPY);
+        ItemMeta meta = roseTnt.getItemMeta();
+        meta.setDisplayName("Poppy");
+        roseTnt.setItemMeta(meta);
+
+        NamespacedKey key = new NamespacedKey(this.pastaSMP, "rose_tnt");
+
+        ShapedRecipe shapedRecipe = new ShapedRecipe(key, roseTnt);
+
+        shapedRecipe.shape("NTN", "TRT", "NTN");
+
+        shapedRecipe.setIngredient('T', Material.TNT);
+        shapedRecipe.setIngredient('R', Material.POPPY);
+
+        Bukkit.addRecipe(shapedRecipe);
+    }
+
+    private void loadLightningRod() {
+        ItemStack lightningStaff = new ItemStack(Material.IRON_SHOVEL);
+        ItemMeta meta = lightningStaff.getItemMeta();
+        meta.setDisplayName(ChatColor.BLUE + "Lightning Staff");
+        lightningStaff.setItemMeta(meta);
+
+        lightningStaff.addUnsafeEnchantment(Enchantment.ARROW_INFINITE, 1);
+        lightningStaff.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+
+        NamespacedKey key = new NamespacedKey(this.pastaSMP, "lightning_staff");
+
+        ShapedRecipe shapedRecipe = new ShapedRecipe(key, lightningStaff);
+
+        shapedRecipe.shape("III", "ISI", "III");
+
+        shapedRecipe.setIngredient('I', Material.IRON_INGOT);
+        shapedRecipe.setIngredient('S', Material.STICK);
 
         Bukkit.addRecipe(shapedRecipe);
     }

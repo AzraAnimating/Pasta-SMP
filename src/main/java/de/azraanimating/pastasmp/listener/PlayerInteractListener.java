@@ -15,12 +15,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import org.bukkit.util.Vector;
-
-import java.util.Objects;
 
 public class PlayerInteractListener implements Listener {
 
@@ -45,7 +41,7 @@ public class PlayerInteractListener implements Listener {
                 if (event.getItem().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.YELLOW + "Basic Levitation Wand")) {
                     event.getPlayer().getLocation().getWorld().spawnArrow(event.getPlayer().getLocation(), event.getPlayer().getLocation().getDirection(), 2, 0);
                 } else if (event.getItem().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.LIGHT_PURPLE + "Advanced Levitation Wand")) {
-                    event.getPlayer().getLocation().getWorld().spawnEntity(event.getPlayer().getLocation().add( 0, 1.7, 0), EntityType.SNOWBALL).setVelocity(event.getPlayer().getLocation().getDirection());
+                    event.getPlayer().getLocation().getWorld().spawnEntity(event.getPlayer().getLocation().add( 0, 1.7, 0), EntityType.SMALL_FIREBALL).setVelocity(event.getPlayer().getLocation().getDirection());
                 }
             }
         }
