@@ -9,6 +9,7 @@
 package de.azraanimating.pastasmp.listener;
 
 import de.azraanimating.pastasmp.main.PastaSMP;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
@@ -25,18 +26,21 @@ public class PlayerDropItemListener implements Listener {
 
     @EventHandler
     public void onPlayerItemDrop(PlayerDropItemEvent event) {
-        if(event.getItemDrop().getItemStack().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.RED + "Rose Dynamiate")) {
+        if (event.getItemDrop().getItemStack().getLore() != null) {
+            if (event.getItemDrop().getItemStack().getItemMeta().getLore().get(0).equalsIgnoreCase(ChatColor.RED + "This Rose explodes on being dropped")) {
+                //Rose Dynamite
+                this.pastaSMP.getServer().getScheduler().runTaskLater(this.pastaSMP, () -> event.getItemDrop().getLocation().getWorld().createExplosion(event.getItemDrop().getLocation(), 5, false, true), 20);
 
-
-            this.pastaSMP.getServer().getScheduler().runTaskLater(this.pastaSMP, () -> event.getItemDrop().getLocation().getWorld().createExplosion(event.getItemDrop().getLocation(), 5, false, true), 20);
-
-        } else if (event.getItemDrop().getItemStack().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.BLUE + "Lightning Staff")) {
+            }
+        }
+        if (event.getItemDrop().getItemStack().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.BLUE + "Lightning Staff")) {
 
             //Lightning-Rod
             this.pastaSMP.getServer().getScheduler().runTaskLater(this.pastaSMP, () -> {
                 for (int i = 0; i < 100; i++) {
                     event.getItemDrop().getLocation().getWorld().strikeLightning(event.getItemDrop().getLocation());
                 }
+
             }, 100);
 
         }
