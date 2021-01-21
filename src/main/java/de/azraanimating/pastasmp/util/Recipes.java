@@ -8,6 +8,7 @@
 
 package de.azraanimating.pastasmp.util;
 
+import com.destroystokyo.paper.Namespaced;
 import de.azraanimating.pastasmp.main.PastaSMP;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -22,6 +23,9 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.ArrayList;
 
 public class Recipes {
+
+    private ItemStack basicLevitationWand;
+    private ItemStack advancedLevitationWand;
 
     private final PastaSMP pastaSMP;
 
@@ -38,13 +42,13 @@ public class Recipes {
     }
 
     private void loadBasicLevitationWand() {
-        ItemStack basicLevitationWand = new ItemStack(Material.BLAZE_ROD);
+        this.basicLevitationWand = new ItemStack(Material.BLAZE_ROD);
         ItemMeta meta = basicLevitationWand.getItemMeta();
         meta.setDisplayName(ChatColor.YELLOW + "Basic Levitation Wand");
         basicLevitationWand.setItemMeta(meta);
 
         ArrayList<String> lore = new ArrayList<>();
-        lore.add(0, ChatColor.GRAY + "Allows you to fly and shoots Arrow from your inventory");
+        lore.add(0, ChatColor.GRAY + "Allows you to fly and shoots Arrows from your inventory");
 
         meta.setLore(lore);
 
@@ -64,29 +68,22 @@ public class Recipes {
     }
 
     private void loadAdvancedLevitationWand() {
-        ItemStack advancedLevitationWand = new ItemStack(Material.BLAZE_ROD);
+
+        this.advancedLevitationWand = new ItemStack(Material.BLAZE_ROD);
         ItemMeta meta = advancedLevitationWand.getItemMeta();
-        meta.setDisplayName(ChatColor.LIGHT_PURPLE + "Advanced Levitation Wand");;
+        meta.setDisplayName(ChatColor.LIGHT_PURPLE + "Advanced Levitation Wand");
 
         ArrayList<String> lore = new ArrayList<>();
-        lore.add(0, ChatColor.GRAY + "Allows you to fly and Shoots Fire Charges from your Inventory");
-        advancedLevitationWand.setLore(lore);
+        lore.add(0, ChatColor.GRAY + "Allows you to fly and shoots Fire Charges from your Inventory");
+
+        meta.setLore(lore);
+
         advancedLevitationWand.setItemMeta(meta);
 
         advancedLevitationWand.addUnsafeEnchantment(Enchantment.ARROW_INFINITE, 1);
         advancedLevitationWand.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 
-
-        ItemStack basicLevitationWand = new ItemStack(Material.BLAZE_ROD);
-        ItemMeta basicLevitationWandmeta = basicLevitationWand.getItemMeta();
-        basicLevitationWandmeta.setDisplayName(ChatColor.YELLOW + "Basic Levitation Wand");
-        basicLevitationWand.setItemMeta(basicLevitationWandmeta);
-
-        ArrayList<String> basicLevitationWandLore = new ArrayList<>();
-        basicLevitationWandLore.add(0, ChatColor.GRAY + "Allows you to fly and shoots Arrow from your inventory");
-        basicLevitationWandmeta.setLore(basicLevitationWandLore);
-        basicLevitationWand.setItemMeta(basicLevitationWandmeta);
-
+        //Crafting
         NamespacedKey key = new NamespacedKey(this.pastaSMP, "advanced_levitation_wand");
 
         ShapedRecipe shapedRecipe = new ShapedRecipe(key, advancedLevitationWand);
@@ -156,30 +153,15 @@ public class Recipes {
         ItemStack tntWand = new ItemStack(Material.BLAZE_ROD);
         ItemMeta meta = tntWand.getItemMeta();
         meta.setDisplayName(ChatColor.RED + "TNT Levitation Wand");;
-        tntWand.setItemMeta(meta);
-
-        tntWand.addUnsafeEnchantment(Enchantment.ARROW_INFINITE, 1);
-        tntWand.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 
         ArrayList<String> lore = new ArrayList<>();
         lore.add(0, ChatColor.GRAY + "Throws TNT from your inventory");
 
         meta.setLore(lore);
-
         tntWand.setItemMeta(meta);
 
-        ItemStack advancedLevitationWand = new ItemStack(Material.BLAZE_ROD);
-        ItemMeta advancedLevitationWandItemMeta = advancedLevitationWand.getItemMeta();
-        advancedLevitationWandItemMeta.setDisplayName(ChatColor.LIGHT_PURPLE + "Advanced Levitation Wand");;
-        advancedLevitationWand.setItemMeta(advancedLevitationWandItemMeta);
-
-        advancedLevitationWand.addUnsafeEnchantment(Enchantment.ARROW_INFINITE, 1);
-        advancedLevitationWand.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-
-        ArrayList<String> advancedLevitationWandLore = new ArrayList<>();
-        advancedLevitationWandLore.add(0, ChatColor.GRAY + "Allows you to fly and Shoots Fire Charges from your Inventory");
-        advancedLevitationWandItemMeta.setLore(advancedLevitationWandLore);
-        advancedLevitationWand.setItemMeta(advancedLevitationWandItemMeta);
+        tntWand.addUnsafeEnchantment(Enchantment.ARROW_INFINITE, 1);
+        tntWand.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 
         NamespacedKey key = new NamespacedKey(this.pastaSMP, "tnt_levitation_wand");
 
