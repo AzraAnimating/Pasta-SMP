@@ -20,6 +20,17 @@ repositories {
     mavenCentral()
     jcenter()
     maven {
+        url = "https://jfrog.zyonicsoftware.com/artifactory/minereaper"
+        credentials {
+            username = System.getenv("Zyonic-Artifactory-Username")
+            password = System.getenv("Zyonic-Artifactory-Password")
+        }
+        metadataSources {
+            mavenPom()
+            artifact()
+        }
+    }
+    maven {
         url = uri('https://hub.spigotmc.org/nexus/content/repositories/snapshots')
     }
     maven {
@@ -37,6 +48,7 @@ repositories {
 
 dependencies {
     compileOnly 'com.destroystokyo.paper:paper-api:1.16.4-R0.1-SNAPSHOT'
+    compileOnly(group: 'org.spigotmc', name: 'spigot', version: '1.16.5')
     implementation 'com.github.WesJD.AnvilGUI:anvilgui:master-SNAPSHOT'
     implementation 'net.luckperms:api:5.0'
     implementation(group: 'com.github.Carleslc', name: 'Simple-YAML', version: '1.6.1')

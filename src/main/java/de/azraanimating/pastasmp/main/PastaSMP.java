@@ -8,10 +8,11 @@
 
 package de.azraanimating.pastasmp.main;
 
+import de.azraanimating.pastasmp.listener.PlayerDeathListener;
 import de.azraanimating.pastasmp.listener.PlayerDropItemListener;
 import de.azraanimating.pastasmp.listener.PlayerInteractListener;
+import de.azraanimating.pastasmp.listener.PlayerJoinListener;
 import de.azraanimating.pastasmp.util.Recipes;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -36,6 +37,8 @@ public class PastaSMP extends JavaPlugin {
 
         pluginManager.registerEvents(new PlayerInteractListener(this), this);
         pluginManager.registerEvents(new PlayerDropItemListener(this), this);
+        pluginManager.registerEvents(new PlayerDeathListener(), this);
+        pluginManager.registerEvents(new PlayerJoinListener(), this);
     }
 
     public Recipes getRecipes() {
