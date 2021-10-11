@@ -51,7 +51,7 @@ dependencies {
     compileOnly(group: 'org.spigotmc', name: 'spigot', version: '1.16.5')
     implementation 'com.github.WesJD.AnvilGUI:anvilgui:master-SNAPSHOT'
     implementation 'net.luckperms:api:5.0'
-    implementation(group: 'com.github.Carleslc', name: 'Simple-YAML', version: '1.6.1')
+    implementation(group: 'com.github.Carleslc', name: 'Simple-YAML', version: '1.7.2')
     implementation 'com.github.AzraAnimating:JSONBuilder:1.1.0'
     implementation 'com.github.Zyonic-Software:MADS:0.2.0-beta'
 }
